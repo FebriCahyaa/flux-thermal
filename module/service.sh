@@ -97,4 +97,12 @@ fi
 
 # ── Start the daemon ───────────────────────────────────────────────────────────
 
-flux_thermald daemon
+DAEMON="$MODDIR/system/bin/flux_thermald"
+
+[ ! -f "$DAEMON" ] && {
+    echo "flux_thermald binary not found: $DAEMON" > "$MODULE_CONFIG/daemon_error"
+    exit 1
+}
+
+chmod +x "$DAEMON"
+"$DAEMON" daemon
