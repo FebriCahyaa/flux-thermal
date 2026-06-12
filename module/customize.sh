@@ -116,6 +116,7 @@ esac
 # ── Extract daemon binary ──────────────────────────────────────────────────────
 
 ui_print "- Extracting flux_thermald ($ARCH)"
+mkdir -p "$MODPATH/system/bin"
 extract "$ZIPFILE" "libs/$ARCH_TMP/flux_thermald" "$TMPDIR"
 cp "$TMPDIR/libs/$ARCH_TMP/flux_thermald" "$MODPATH/system/bin/flux_thermald"
 rm -rf "$TMPDIR/libs"
