@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include <vector>
 
-#include "FluxLog.hpp"
+#include "FluxThermalLog.hpp"
 
 namespace SignalHandler {
 
@@ -125,7 +125,7 @@ inline void crash_signal_handler(int sig) {
     // Best-effort spdlog flush. This is NOT async-signal-safe, but we are
     // about to terminate anyway, the risk of deadlock is acceptable here
     // versus losing the last log lines entirely.
-    FluxLog::flush();
+    FluxThermalLog::flush();
 
     std::signal(sig, SIG_DFL);
     std::raise(sig);
@@ -142,7 +142,7 @@ inline void exit_signal_handler(int sig) {
 
     safe_log_signal(sig);
     fsync(STDERR_FILENO);
-    FluxLog::flush();
+    FluxThermalLog::flush();
 
     std::signal(sig, SIG_DFL);
     std::raise(sig);
@@ -214,7 +214,7 @@ inline void setup_signal_handlers() {
  * @brief Flush all pending log messages before exit.
  */
 inline void cleanup_before_exit() {
-    FluxLog::flush();
+    FluxThermalLog::flush();
 }
 
 } // namespace SignalHandler
