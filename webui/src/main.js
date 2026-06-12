@@ -4,14 +4,21 @@ import { createI18n } from 'vue-i18n'
 
 import App from './App.vue'
 import router from './router/index'
-import { Locales } from './helpers/Locales'
+import {
+  getPreferredLanguage,
+  loadLocaleMessages,
+  setI18n,
+} from './helpers/Locales'
 
 import './assets/main.css'
 
 // ── i18n ──────────────────────────────────────────────────────────────────────
 
-const messages = await Locales.loadAll()
-const locale   = Locales.getPreferredLocale(Object.keys(messages))
+const { locale: preferredLocale } = await getPreferredLanguage()
+const localeMessages = await loadLocaleMessages(preferredLocale)
+
+const messages = { [preferredLocale]: localeMessages }
+const locale   = preferredLocale
 
 const i18n = createI18n({
   legacy: false,
@@ -19,6 +26,8 @@ const i18n = createI18n({
   fallbackLocale: 'en',
   messages,
 })
+
+setI18n(i18n)
 
 // ── Eruda (dev mode only) ─────────────────────────────────────────────────────
 
