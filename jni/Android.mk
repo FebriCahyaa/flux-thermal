@@ -33,7 +33,8 @@ LOCAL_STATIC_LIBRARIES := \
     InotifyWatcher \
     LockFile \
     ThermalZoneManager \
-    spdlog
+    spdlog \
+    rapidjson
 
 LOCAL_CPPFLAGS  := -std=c++17 -O2 -Wall -Wextra -fexceptions -fPIE
 LOCAL_LDFLAGS   := -pie -static-libstdc++
