@@ -192,18 +192,31 @@ inline void setup_signal_handlers() {
     // Crash signals
     std::signal(SIGSEGV, crash_signal_handler);
     std::signal(SIGABRT, crash_signal_handler);
-    std::signal(SIGILL, crash_signal_handler);
-    std::signal(SIGFPE, crash_signal_handler);
-    std::signal(SIGBUS, crash_signal_handler);
+    std::signal(SIGILL,  crash_signal_handler);
+    std::signal(SIGFPE,  crash_signal_handler);
+    std::signal(SIGBUS,  crash_signal_handler);
 
     // Graceful-exit signals
     std::signal(SIGTERM, exit_signal_handler);
-    std::signal(SIGINT, exit_signal_handler);
+    std::signal(SIGINT,  exit_signal_handler);
 
     // Controllable / user signals
-    std::signal(SIGHUP, user_signal_handler);
+    std::signal(SIGHUP,  user_signal_handler);
     std::signal(SIGUSR1, user_signal_handler);
     std::signal(SIGUSR2, user_signal_handler);
+}
+
+/**
+ * @brief Convenience wrapper: install all signal handlers and register @p cb
+ *        as a SIGTERM/SIGINT/SIGHUP callback for graceful daemon shutdown.
+ *
+ * @param cb Callable with signature void(int sig).
+ */
+inline void register_all(SignalCallback cb) {
+    on_sighup(cb);
+    on_sigusr1(cb);
+    on_sigusr2(cb);
+    setup_signal_handlers();
 }
 
 // ---------------------------------------------------------------------------
