@@ -44,6 +44,9 @@ cd ./module || {
     exit 1
 }
 
+# Include verify.sh at zip root (extracted by customize.sh for integrity check)
+cp ../verify.sh ./verify.sh
+
 zip -r9 ../"$zipName" * -x *placeholder* *.map .shellcheckrc
 zip -z  ../"$zipName" << EOF
 $version-$release_code
