@@ -1,14 +1,17 @@
-LOCAL_PATH := $(call my-dir)
+JNI_ROOT_PATH := $(call my-dir)
+LOCAL_PATH := $(JNI_ROOT_PATH)
 
 # ── External deps ──────────────────────────────────────────────────────────────
-include $(LOCAL_PATH)/external/Android.mk
+include $(JNI_ROOT_PATH)/external/Android.mk
 
 # ── Base libraries ─────────────────────────────────────────────────────────────
-include $(LOCAL_PATH)/base/InotifyWatcher/Android.mk
-include $(LOCAL_PATH)/base/LockFile/Android.mk
-include $(LOCAL_PATH)/base/ThermalZone/Android.mk
+include $(JNI_ROOT_PATH)/base/InotifyWatcher/Android.mk
+include $(JNI_ROOT_PATH)/base/LockFile/Android.mk
+include $(JNI_ROOT_PATH)/base/ThermalZone/Android.mk
 
 # ── Main daemon ────────────────────────────────────────────────────────────────
+LOCAL_PATH := $(JNI_ROOT_PATH)
+
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := flux_thermald
