@@ -75,7 +75,10 @@ static void set_module_status(const std::string &status) {
 }
 
 static void notify_fatal(const std::string &msg) {
-    notify(("ERROR: " + msg).c_str());
+    const std::string full = "ERROR: " + msg;
+    LOGC("{}", full);
+    // Best-effort: send an Android toast via Magisk/KernelSU notify utility
+    systemv("cmd_notify '%s' 2>/dev/null || true", full.c_str());
     set_module_status("❌ " + msg);
 }
 
