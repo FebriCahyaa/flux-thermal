@@ -35,7 +35,7 @@
 namespace ThermalProfiler {
 
 /**
- * @brief Apply the given thermal profile.
+ * @brief Apply the given thermal profile with explicit runtime parameters.
  * @param profile Target profile.
  * @param soc     SoC type code (read from FLUX_SOC_FILE).
  * @param charging True when the device is charging.
@@ -45,11 +45,11 @@ namespace ThermalProfiler {
  */
 void apply(
     ThermalProfile profile,
-    SoCType        soc       = SOC_UNKNOWN,
-    bool           charging  = false,
-    bool           aggressive= false,
-    int            max_temp_mc = 0,
-    bool           is_gki    = false
+    SoCType        soc,
+    bool           charging,
+    bool           aggressive,
+    int            max_temp_mc,
+    bool           is_gki
 );
 
 /**
