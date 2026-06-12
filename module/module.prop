@@ -1,0 +1,9 @@
+id=flux_thermal
+name=Flux Thermal
+version=
+versionCode=
+author=FebriCahyaa
+description=Adaptive thermal management for Flux Tweaks — all chipsets supported.
+updateJson=
+banner=banner.webp
+webuiIcon=webroot/icon.webp

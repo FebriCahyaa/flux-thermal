@@ -1,0 +1,8 @@
+[submodule "jni/external/spdlog"]
+	path = jni/external/spdlog
+	url = https://github.com/gabime/spdlog.git
+	branch = v1.x
+
+[submodule "jni/external/rapidjson"]
+	path = jni/external/rapidjson
+	url = https://github.com/Tencent/rapidjson.git

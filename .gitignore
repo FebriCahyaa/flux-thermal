@@ -1,0 +1,11 @@
+libs/
+obj/
+module/libs/
+module/webroot/*
+!module/webroot/.placeholder
+module/system/bin/flux_thermal_profiler
+module/system/bin/flux_thermal_utility
+module/system/bin/flux_thermald
+webui/dist/
+webui/node_modules/
+*.zip
